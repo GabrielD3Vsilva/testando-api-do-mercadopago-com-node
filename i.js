@@ -1,6 +1,7 @@
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv').config( );
 
 const app = express();
 
@@ -9,10 +10,10 @@ app.use(cors());
 
 
 app.post('/test', async (req, res) => {
-    const client = new MercadoPagoConfig({ accessToken: 'TEST-8001012963880387-060323-cdb26a9b2c52877f4a0ae4bc256d8912-1840600103'});
+    const client = new MercadoPagoConfig({ accessToken: process.env.KEY});
     
     const preference = new Preference(client);
-
+    
     const body = {
         items: [
             {
